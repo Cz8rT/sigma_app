@@ -51,12 +51,11 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     },
 }));
 
-const Sidebar = () => {
+const Sidebar = ({ selected, setSelected, login }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [selected, setSelected] = useState("Dashboard");
 
     return (
         <Box

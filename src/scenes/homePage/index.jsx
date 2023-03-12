@@ -1,11 +1,12 @@
-import { Box, Button, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import StatBox from "./../../components/StatBox";
 import Diversity3Icon from '@mui/icons-material/Diversity3';
+import ButtonLink from "../../components/ButtonLink";
 
-const HomePage = () => {
+const HomePage = ({ selected, setSelected }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
@@ -56,20 +57,15 @@ const HomePage = () => {
             </Box>
 
             <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", marginTop: "40px"}} >
-                <Button sx={{ 
-                    backgroundColor: colors.redAccent[600], 
-                    color: colors.primary[100], 
-                    fontSize: "20px", 
-                    fontWeight: "bold", 
-                    padding: "12px 25px",
-                    ":hover": {backgroundColor: colors.grey[700]}
-                }}
-                >
-                    <PeopleOutlinedIcon sx={{ mr: "10px" }} />
-                    Do zespołów
-                </Button>
+                <ButtonLink 
+                    value="Do zespołów"
+                    title="Zespoły"
+                    to="/teams"
+                    icon={<PeopleOutlinedIcon />}
+                    selected={selected}
+                    setSelected={setSelected}>
+                </ButtonLink>
             </Box>
-
         </Box>  
     )
 }
