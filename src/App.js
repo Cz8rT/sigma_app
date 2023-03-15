@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ColorModeContext, useMode } from './theme';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Routes, Route } from "react-router-dom"
+import { studenci } from "./data/studenci.js";
 import Topbar from './scenes/global/Topbar';
 import Sidebar from './scenes/global/Sidebar';
 import HomePage from './scenes/homePage';
@@ -18,6 +19,9 @@ function App() {
   const [selected, setSelected] = useState("Dashboard");
   const [login, setLogin] = useState(null);
 
+  // zaimportowane dane studentów
+  const students = studenci;
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
@@ -27,13 +31,13 @@ function App() {
           <main className='content'>
             <Topbar selected={selected} setSelected={setSelected} login={login} setLogin={setLogin} />
             <Routes>
-              <Route path='/' element={<HomePage selected={selected} setSelected={setSelected} />} />
-              <Route path='/teams' element={<Teams />} />
+              <Route path='/' element={<HomePage selected={selected} setSelected={setSelected} students={students} />} />
+              <Route path='/teams' element={<Teams students={students} login={login} />} />
               <Route path='/chat' element={<Chat />} />
               <Route path='/alerts' element={<Alerts />} />
               <Route path='/profile' element={<Profile />} />
-              <Route path='/bar' element={<Bar />} />
-              <Route path='/pie' element={<Pie />} />
+              <Route path='/bar' element={<Bar students={students} />} />
+              <Route path='/pie' element={<Pie students={students} />} />
               <Route path='/login' element={<Login login={login} setLogin={setLogin} />} />
             </Routes>
           </main>  

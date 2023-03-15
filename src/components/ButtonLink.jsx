@@ -8,7 +8,7 @@ const ButtonLink = ({ value, title, to, icon, selected, setSelected }) => {
     const colors = tokens(theme.palette.mode);
 
     return (
-        <Link to={to} active={selected === title} onClick={()=> setSelected(title)} backgroundColor={colors.redAccent[600]} >
+        <Link to={to} active={(selected === title) ? "true" : "false" } onClick={()=> setSelected(title)} >
             <Box width="200px" sx={{ 
                 display: "flex", 
                 justifyContent: "space-evenly", 
