@@ -18,6 +18,7 @@ function App() {
   const [theme, colorMode] = useMode();
   const [selected, setSelected] = useState("Dashboard");
   const [login, setLogin] = useState(null);
+  const [access, setAccess] = useState(null);
 
   // zaimportowane dane studentów
   const students = studenci;
@@ -29,16 +30,16 @@ function App() {
         <div className="app">
           <Sidebar selected={selected} setSelected={setSelected} login={login} />
           <main className='content'>
-            <Topbar selected={selected} setSelected={setSelected} login={login} setLogin={setLogin} />
+            <Topbar selected={selected} setSelected={setSelected} login={login} setLogin={setLogin} setAccess={setAccess} />
             <Routes>
               <Route path='/' element={<HomePage selected={selected} setSelected={setSelected} students={students} />} />
-              <Route path='/teams' element={<Teams students={students} login={login} />} />
+              <Route path='/teams' element={<Teams students={students} login={login} access={access} />} />
               <Route path='/chat' element={<Chat />} />
               <Route path='/alerts' element={<Alerts />} />
               <Route path='/profile' element={<Profile />} />
               <Route path='/bar' element={<Bar students={students} />} />
               <Route path='/pie' element={<Pie students={students} />} />
-              <Route path='/login' element={<Login login={login} setLogin={setLogin} />} />
+              <Route path='/login' element={<Login setLogin={setLogin} setAccess={setAccess} />} />
             </Routes>
           </main>  
         </div>

@@ -7,7 +7,7 @@ import Header from "../../components/Header";
 // import AuthContext from "../../context/AuthProvider";
 import tajneHasla from "./../../data/tajneHasla";
 
-const Login = ({ login, setLogin }) => {
+const Login = ({ setLogin, setAccess }) => {
 
     // const { setAuth } = useContext(AuthContext);
 
@@ -42,6 +42,7 @@ const Login = ({ login, setLogin }) => {
         for(var i = 0; i < tajneHasla.length; i++) {
             if(tajneHasla[i].username === user && tajneHasla[i].username === pwd){
                 setLogin(user);
+                setAccess(tajneHasla[i].access);
                 setSuccess(true);
                 setErrMsg('');
             }
