@@ -1,12 +1,66 @@
 import { ResponsiveBar } from '@nivo/bar'
 import { useTheme } from '@mui/material';
 import { tokens } from "./../theme";
-import { mockBarData } from "./../data/mockData.js";
 
-const BarChart = ({ isDashboard = false }) => {
+export const mockBarData = [
+    {
+        grupa: "Grupa 1",
+        'Mężczyźni': 0,
+        'Kobiety': 0,
+    },
+    {
+        grupa: "Grupa 2",
+        'Mężczyźni': 0,
+        'Kobiety': 0,
+    },{
+        grupa: "Grupa 3",
+        'Mężczyźni': 0,
+        'Kobiety': 0,
+    },{
+        grupa: "Grupa 4",
+        'Mężczyźni': 0,
+        'Kobiety': 0,
+    },{
+        grupa: "Grupa 5",
+        'Mężczyźni': 0,
+        'Kobiety': 0,
+    },{
+        grupa: "Grupa 6",
+        'Mężczyźni': 0,
+        'Kobiety': 0,
+    },
+  ];
+
+const BarChart = ({ students }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     
+    // Obliczanie liczby studentów każdej z grup
+    const studentSexCounter = () => {
+        const studentsSex = [
+            {women: 0, men: 0}, 
+            {women: 0, men: 0}, 
+            {women: 0, men: 0}, 
+            {women: 0, men: 0}, 
+            {women: 0, men: 0}, 
+            {women: 0, men: 0}
+        ];
+
+        students.map((e) => {
+            if(e.sex === "female"){
+                return studentsSex[e.group - 1].women++; 
+            } else return studentsSex[e.group - 1].men++; 
+        })
+        return studentsSex;
+    }
+
+    const studentSexArray = studentSexCounter();
+
+    for(var i = 0; i <= 5; i++){
+        mockBarData[i]['Kobiety'] = studentSexArray[i].women;
+        mockBarData[i]['Mężczyźni'] = studentSexArray[i].men;
+    }
+
     return (
     <ResponsiveBar
         data={mockBarData}
@@ -42,28 +96,24 @@ const BarChart = ({ isDashboard = false }) => {
             }
         }}
         keys={[
-            'hot dog',
-            'burger',
-            'sandwich',
-            'kebab',
-            'fries',
-            'donut'
+            'Mężczyźni',
+            'Kobiety'
         ]}
-        indexBy="country"
+        indexBy="grupa"
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
         padding={0.15}
         innerPadding={5}
         valueScale={{ type: 'linear' }}
         indexScale={{ type: 'band', round: true }}
-        colors={{ scheme: 'red_purple' }}
+        colors={{ scheme: 'dark2' }}
         defs={[
             {
                 id: 'dots',
                 type: 'patternDots',
                 background: 'inherit',
-                color: '#38bcb2',
-                size: 4,
-                padding: 1,
+                color: '#800080',
+                size: 5,
+                padding: 20,
                 stagger: true
             },
             {
@@ -72,20 +122,20 @@ const BarChart = ({ isDashboard = false }) => {
                 background: 'inherit',
                 color: '#eed312',
                 rotation: -45,
-                lineWidth: 6,
-                spacing: 10
+                lineWidth: 2,
+                spacing: 50
             }
         ]}
         fill={[
             {
                 match: {
-                    id: 'fries'
+                    id: 'Kobiety'
                 },
                 id: 'dots'
             },
             {
                 match: {
-                    id: 'sandwich'
+                    id: 'Mężczyźni'
                 },
                 id: 'lines'
             }
@@ -107,7 +157,7 @@ const BarChart = ({ isDashboard = false }) => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: isDashboard ? undefined : 'country',
+            legend: 'Grupa',
             legendPosition: 'middle',
             legendOffset: 32
         }}
@@ -115,7 +165,7 @@ const BarChart = ({ isDashboard = false }) => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: isDashboard ? undefined : 'food',
+            legend: 'Liczba użytkowników danej płci',
             legendPosition: 'middle',
             legendOffset: -40
         }}
@@ -157,7 +207,7 @@ const BarChart = ({ isDashboard = false }) => {
         ]}
         role="application"
         ariaLabel="Nivo bar chart demo"
-        barAriaLabel={function(e){return e.id+": "+e.formattedValue+" in country: "+e.indexValue}}
+        barAriaLabel={function(e){return e.id+": "+e.formattedValue+" in grupa: "+e.indexValue}}
     />
 );
 }

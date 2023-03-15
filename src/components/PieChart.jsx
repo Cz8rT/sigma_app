@@ -1,12 +1,65 @@
 import { ResponsivePie } from '@nivo/pie'
 import { useTheme } from '@mui/material';
 import { tokens } from "./../theme";
-import { mockPieData } from "./../data/mockData.js";
 
-const PieChart = ({ isDashboard = false }) => {
+const mockPieData = [
+    {
+      id: "Grupa 1",
+      label: "Grupa 1",
+      value: 0,
+      color: "hsl(104, 70%, 50%)",
+    },
+    {
+      id: "Grupa 2",
+      label: "Grupa 2",
+      value: 0,
+      color: "hsl(162, 70%, 50%)",
+    },
+    {
+      id: "Grupa 3",
+      label: "Grupa 3",
+      value: 0,
+      color: "hsl(291, 70%, 50%)",
+    },
+    {
+      id: "Grupa 4",
+      label: "Grupa 4",
+      value: 0,
+      color: "hsl(229, 70%, 50%)",
+    },
+    {
+      id: "Grupa 5",
+      label: "Grupa 5",
+      value: 0,
+      color: "hsl(344, 70%, 50%)",
+    },
+    {
+        id: "Grupa 6",
+        label: "Grupa 6",
+        value: 0,
+        color: "hsl(130, 70%, 50%)",
+      },
+  ];
+
+const PieChart = ({ students }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    
+
+    // Obliczanie liczby studentów każdej z grup
+    const studentCounter = () => {
+        const numOfStudents = [0, 0, 0, 0, 0, 0];
+        students.map((e) => {
+           return numOfStudents[e.group - 1]++;
+        })
+        return numOfStudents;
+    }
+
+    const capacityArray = studentCounter();
+
+    for(var i = 0; i <= 5; i++){
+        mockPieData[i].value = capacityArray[i];
+    }
+
     return (
         <ResponsivePie
         data={mockPieData}

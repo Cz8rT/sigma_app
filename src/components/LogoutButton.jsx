@@ -25,7 +25,7 @@ const LogoutButton = ({ user, value, title, to, icon, selected, setSelected, set
             >
                 {user && `Zalogowano: ${user}`}
             </Typography>
-            <Link to={to} active={selected === title} onClick={logoutHandler} backgroundColor={colors.redAccent[600]} >
+            <Link to={to} active={(selected === title) ? "true" : "false" } onClick={logoutHandler} >
                 <Box width="150px" height="40px" sx={{ 
                     display: "flex", 
                     justifyContent: "space-evenly", 

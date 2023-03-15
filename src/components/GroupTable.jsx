@@ -1,94 +1,64 @@
 import { Typography, Box, useTheme } from "@mui/material";
 import { tokens } from "../theme";
-import { DataGrid } from "@mui/x-data-grid";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
+import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 
-const GroupTable = ({group, data, color}) => {
+const GroupTable = ({groupName, group, students, pickUserHandler }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    
-    const columns = [
-        { field: "id", headerName: "ID" }, 
-        { 
-            field: "name", 
-            headerName: "Użytkownik", 
-            flex: 1, 
-            cellClassName: "name-column--cell"
-        },
-        { 
-            field: "access", 
-            headerName: "Status",
-            renderCell: ({ row: { access }}) => {
-                return (
-                    <Box
-                        width="100%"
-                        margin="0 auto"
-                        p="5px"
-                        display="flex"
-                        justifyContent="center"
-                        backgroundColor={
-                            access === "admin"
-                            ? colors.greenAccent[600]
-                            : colors.redAccent[500]
-                        }
-                        borderRadius="4px"
-                    >
-                        {access === "admin" && <AdminPanelSettingsOutlinedIcon /> }
-                        {access === "manager" && <SecurityOutlinedIcon /> }
-                        {access === "user" && <LockOpenOutlinedIcon /> }
-                        <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-                            {access}
-                        </Typography>
-                    </Box>
-                )
-            }
-        },
-    ];
 
-    return <Box marginBottom="30px">
-                <Typography 
-                    variant="h2" 
-                    color={colors.grey[100]} 
-                    fontWeight="bold" 
-                    sx={{marginBottom: "5px"}} 
-                >
-                    {group}
-                </Typography>
-                <Box
-                    m="5px 0 0 0"
-                    height="65vh"
-                    sx={{ 
-                        "& .MuiDataGrid-root": {
-                        border: "none",
-                        width: "450px"
-                        },
-                        "& .MuiDataGrid-cell": {
-                        borderBottom: "none"
-                        },
-                        "& .MuiDataGrid-columnHeaders": {
-                        borderBottom: "none",
-                        backgroundColor: colors.blueAccent[300]
-                        },
-                        "& .name-column--cell": {
-                        color: colors.grey[100]
-                        },
-                        "& .MuiDataGrid-virtualScroller": {
-                        backgroundColor: colors.primary[400]
-                        },
-                        "& .MuiDataGrid-footerContainer": {
-                        borderTop: "none",
-                        backgroundColor: colors.blueAccent[300]
-                        }
+    const listGroup = (list) => {
+        var counter = 0;
+
+        return (
+            <ul className="userList">
+                {list.map((user) => {
+                    if(user.group === group){
+
+                        counter+=1;
+
+                        return (
+                            <li className="userRow" key={user.id} style={{
+                                backgroundColor: colors.primary[400],
+                                color: colors.primary[200]
+                                }} 
+                            >
+                                <div>
+                                    <span style={{margin: "0 10px"}}>{counter}.</span>
+                                    <span style={{margin: "0 30px"}}>{user.name} {user.surname}</span>
+                                </div>
+                                <button className="pickUserButton" onClick={() => pickUserHandler(user.id)}><PersonAddAltOutlinedIcon /></button>
+                            </li>
+                        )
+                    } else return null;
+                })}
+            </ul>
+        )
+    }
+
+    return (
+        <Box marginBottom="30px">
+            <Typography 
+                variant="h2" 
+                color={colors.grey[100]} 
+                fontWeight="bold" 
+                sx={{ marginBottom: "10px" }} 
+            >
+                {groupName}
+            </Typography>
+            <Box>
+                <div className="userListHeader" style={{
+                    backgroundColor: colors.blueAccent[500],
+                    color: colors.primary[200]
                     }}
                 >
-                <DataGrid 
-                    rows={data}
-                    columns={columns}
-                />
+                    <span style={{margin: "0 10px"}}>Nr</span>
+                    <span style={{marginRight: "120px"}}>Imię Nazwisko</span>
+                    <span style={{margin: "0 50px"}}>Wybierz</span>
+                </div>
+                {listGroup(students)}
             </Box>
         </Box>
+    )
 } 
 
 export default GroupTable;

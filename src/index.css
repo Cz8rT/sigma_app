@@ -51,8 +51,68 @@ text-decoration: none;
   cursor: pointer;
 }
 
-#loginSubmitButton:active{
+#loginSubmitButton:active, .pickUserButton:active{
   box-shadow: 4px 4px 6px 2px rgba(38,36,36,0.75) inset;
   -webkit-box-shadow: 4px 4px 6px 2px rgba(38,36,36,0.75) inset;
   -moz-box-shadow: 4px 4px 6px 2px rgba(38,36,36,0.75) inset;
+}
+
+.userList{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  list-style: none;
+  width: 460px;
+  height: 600px;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.pickedUserList{
+  margin: 10px;
+  padding: 0;
+}
+
+.userListHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  width: 460px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.userRow{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  width: 100%;
+  border-radius: 4px;
+  border: #727681 solid 2px;
+}
+
+.pickUserButton{
+  width: 100px;
+  padding: 5px;
+  display: flex;
+  margin: 5px 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: #3da58a;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#pickedUserContainer{
+  width: 500px;
+  height: 120px;
+  border-radius: 10px;
+}
+
+#pickedElement, .pickUserButton:hover{
+  background-color: #4cceac;
 }

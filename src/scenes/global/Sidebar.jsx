@@ -78,7 +78,7 @@ const Sidebar = ({ selected, setSelected, login }) => {
             }}
         >
             <ProSidebar collapsed={isCollapsed}>
-                <Menu iconShape="square">
+                <Menu iconShape="square" >
                     {/* Logo i menu */}
                     <MenuItem
                         onClick={() => setIsCollapsed(!isCollapsed)}
@@ -107,14 +107,19 @@ const Sidebar = ({ selected, setSelected, login }) => {
                             </Box>
                         )}
                     </MenuItem>
-                    <StyledBadge
-                        overlap="circular"
-                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                        variant="dot"
-                        sx={{ m: "10px 0 40px 20%"}}
-                    >
-                        <Avatar alt="Sigma logo" src={sigma} sx={{ height: "50px", width: "50px" }}/>
-                    </StyledBadge>
+                    {/* Avatar wyświetlany zależnie od zalogowania */}
+                    {login && (
+                            <StyledBadge
+                                overlap="circular"
+                                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                                variant="dot"
+                                sx={{ m: "10px 0 40px 20%" }}
+                            >
+                                <Avatar alt="Sigma logo" src={sigma} sx={{ height: "50px", width: "50px" }}/>
+                            </StyledBadge>
+                        )
+                    }
+                    
                     <Box paddingLeft={isCollapsed ? undefined : "10%"}>
                         <Item
                             title="Strona główna"

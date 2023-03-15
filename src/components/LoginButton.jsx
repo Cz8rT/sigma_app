@@ -16,7 +16,7 @@ const LoginButton = ({ value, title, to, icon, selected, setSelected }) => {
             justifyContent: "space-between", 
             alignItems: "center" }}
         >
-            <Link to={to} active={selected === title} onClick={()=> setSelected(title)} backgroundColor={colors.redAccent[600]} >
+            <Link to={to} active={(selected === title) ? "true" : "false" } onClick={()=> setSelected(title)} >
                 <Box width="180px" height="40px" sx={{ 
                     display: "flex", 
                     justifyContent: "space-between", 
