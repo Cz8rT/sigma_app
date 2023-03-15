@@ -107,6 +107,10 @@ text-decoration: none;
   cursor: pointer;
 }
 
+.removeUserButton{
+  background-color: #d67b14c7;
+}
+
 #pickedUserContainer{
   width: 500px;
   height: 120px;
@@ -115,4 +119,30 @@ text-decoration: none;
 
 #pickedElement, .pickUserButton:hover{
   background-color: #4cceac;
+}
+
+.removeUserButton:hover{
+  background-color: #f89c25d8;
+}
+
+.deactivated{
+  background-color: #a3aaa7ec;
+}
+
+.deactivated:hover{
+  background-color: #a3aaa7ec;
+}
+
+.switchUsers{
+  margin-top: 10px;
+}
+
+.moveUser{
+  margin-top: 20px;
+}
+
+.moveToGroup{
+  width: 50px;
+  font-size: 20px;
+  font-weight: bold;
 }

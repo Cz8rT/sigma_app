@@ -3,13 +3,14 @@ import { Box, Typography, useTheme } from '@mui/material';
 import { Link } from "react-router-dom";
 import { tokens } from "../theme";
 
-const LogoutButton = ({ user, value, title, to, icon, selected, setSelected, setLogin }) => {
+const LogoutButton = ({ user, value, title, to, icon, selected, setSelected, setLogin, setAccess }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     
     const logoutHandler = () => {
         setSelected(title);
         setLogin(null);
+        setAccess(null);
     };
 
     return (  

@@ -11,7 +11,7 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import LoginButton from "../../components/LoginButton";
 import LogoutButton from "../../components/LogoutButton";
 
-const Topbar = ( { selected, setSelected, login, setLogin }) => {
+const Topbar = ( { selected, setSelected, login, setLogin, setAccess }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const colorMode = useContext(ColorModeContext);
@@ -50,6 +50,7 @@ const Topbar = ( { selected, setSelected, login, setLogin }) => {
                     selected={selected}
                     setSelected={setSelected}
                     setLogin={setLogin}
+                    setAccess={setAccess}
                 />)
             }
             {/*Icon Section*/}
