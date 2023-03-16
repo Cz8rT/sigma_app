@@ -115,6 +115,7 @@ text-decoration: none;
   width: 500px;
   height: 120px;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 #pickedElement, .pickUserButton:hover{
@@ -145,4 +146,22 @@ text-decoration: none;
   width: 50px;
   font-size: 20px;
   font-weight: bold;
+}
+
+/* ------------------------ Animacja przycisków ----------------------*/
+@keyframes slideInFromRight {
+  from{
+    transform: skewX(-30deg) translateX(480px);
+  }
+  
+  to{
+    transform: skewX(0) translateX(0);
+  }
+}
+
+.animateButtons{
+  animation-name: slideInFromRight;
+  animation-duration: 0.7s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
 }

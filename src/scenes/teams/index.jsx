@@ -124,15 +124,18 @@ const Teams = ({ students, login, access }) => {
                 <Box sx={{ display: "flex", justifyContent: "space-evenly", alignItems: "center", flexWrap: "wrap" }} >
                     <Box id="pickedUserContainer" sx={{ backgroundColor: colors.primary[400] }}>
                         {listPickedUsers(pickedUsers)}
+                        
                         { toggleMoveButtons ? ((typeof pickedUsers[0] !== "undefined") && (typeof pickedUsers[1] === "undefined") && (login)
-                            ? (<Box sx={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }} >
+                            ? (<Box className="animateButtons"><Box sx={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }} >
                             <MoveUser pickedUsers={pickedUsers} group={1} moveUserHandler={moveUserHandler} numOfStudents={capacityArray[0]} />
                             <MoveUser pickedUsers={pickedUsers} group={2} moveUserHandler={moveUserHandler} numOfStudents={capacityArray[1]} />
                             <MoveUser pickedUsers={pickedUsers} group={3} moveUserHandler={moveUserHandler} numOfStudents={capacityArray[2]} />
                             <MoveUser pickedUsers={pickedUsers} group={4} moveUserHandler={moveUserHandler} numOfStudents={capacityArray[3]} />
                             <MoveUser pickedUsers={pickedUsers} group={5} moveUserHandler={moveUserHandler} numOfStudents={capacityArray[4]} />
                             <MoveUser pickedUsers={pickedUsers} group={6} moveUserHandler={moveUserHandler} numOfStudents={capacityArray[5]} />
-                        </Box>) : null  ) : null }
+                        </Box></Box>) : null  ) : null }
+                        
+                        
                     </Box>
                     <Box>
                         { login ? ( 

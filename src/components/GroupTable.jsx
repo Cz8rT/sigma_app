@@ -26,7 +26,7 @@ const GroupTable = ({groupName, group, students, pickedUsers, pickUserHandler, r
                             >
                                 <div>
                                     <span style={{margin: "0 10px"}}>{counter}.</span>
-                                    <span style={{margin: "0 30px"}}>{user.name} {user.surname}</span>
+                                    <span style={{margin: "0 30px"}}>{user.name} {(access !== 'admin') ? Array.from(user.surname)[0] : user.surname }</span>
                                 </div>
                                 {(access === "admin")
                                     ?((
